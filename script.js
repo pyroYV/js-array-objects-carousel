@@ -47,22 +47,34 @@ const images = [
 ];
 
 let wrapper = document.getElementById('carousel-wrapper')
-/* const imgList = wrapper.children */
-let prova = document.getElementById('prova')
-console.log(prova)
 
-prova.innerHTML += 'ao'
-console.log(wrapper,'ciao')
 
 carouselIndex = 0
-console.log(wrapper,'ciao')
-images.forEach(element => {
-    // const newImg = document.createElement('img')
-    // newImg.classList.add('w-100','fix')
-    // newImg.setAttribute('src', element.url)
-    // wrapper.append(newImg)
-    wrapper.innerHTML += `
-    <img src="${element.url}"`
 
-
+images.forEach((element) => {
+    const imgWrapper = document.createElement('div')
+    const newImg = createImg(element)
+    imgWrapper.append(newImg)
+    const newDiv = createInfo(element)
+    imgWrapper.append(newDiv)
+    wrapper.append(imgWrapper)
+    
 });
+//metto la classe active alla prima immagine e al primo info div
+    
+
+    
+function createImg(element){
+    const newImg = document.createElement('img')
+    newImg.classList.add('w-100','fix')
+    newImg.setAttribute('src', element.url)
+
+    return newImg
+}
+
+function createInfo(element){
+    const newDiv = document.createElement('div')
+    newDiv.classList.add('position-fix','text-end')
+    newDiv.innerHTML = `<h2>${element.title}</h2> <p>${element.description}`
+    return newDiv
+}
