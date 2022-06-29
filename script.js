@@ -46,24 +46,26 @@ const images = [
     },
 ];
 
-let wrapper = document.getElementById('carousel-wrapper')
-
+const wrapper = document.getElementById('carousel-wrapper')
+const divlist = document.getElementById('carousel-wrapper').children
+console.log(divlist)
 
 carouselIndex = 0
 
 images.forEach((element) => {
+    // creo un wrapper per le immagini ed eseguo le funzioni per popolarlo, poi lo appendo
     const imgWrapper = document.createElement('div')
     const newImg = createImg(element)
-    imgWrapper.append(newImg)
     const newDiv = createInfo(element)
+    imgWrapper.append(newImg)
     imgWrapper.append(newDiv)
     wrapper.append(imgWrapper)
     
 });
-//metto la classe active alla prima immagine e al primo info div
-    
+    //metto la classe active al primo info div
+    divlist[carouselIndex].classList.add('active')
 
-    
+    // funzione per creare un immagine e settare le tag
 function createImg(element){
     const newImg = document.createElement('img')
     newImg.classList.add('w-100','fix')
@@ -71,10 +73,35 @@ function createImg(element){
 
     return newImg
 }
-
+    // funzione per creare un div in cui sono contenute le informazioni 
 function createInfo(element){
     const newDiv = document.createElement('div')
     newDiv.classList.add('position-fix','text-end')
     newDiv.innerHTML = `<h2>${element.title}</h2> <p>${element.description}`
     return newDiv
 }
+    // prendo i due buttons
+const nextButton = document.getElementById('next');
+const backButton = document.getElementById('back');
+
+nextButton.addEventListener('click', next)
+backButton.addEventListener('click', back)
+
+function next(){
+    divlist[carouselIndex].classList.remove('active');
+    carouselIndex++;
+        if(carouselIndex === images.length){
+            carouselIndex = 0;
+        }
+        divlist[carouselIndex].classList.add('active');
+    }
+    
+
+function back(){
+    divlist[carouselIndex].classList.remove('active');
+     carouselIndex--;
+         if(carouselIndex === -1 ){
+             carouselIndex = images.length-1;
+         }
+         divlist[carouselIndex].classList.add('active');
+ }
