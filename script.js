@@ -46,4 +46,23 @@ const images = [
     },
 ];
 
-const wrapper
+let wrapper = document.getElementById('carousel-wrapper')
+/* const imgList = wrapper.children */
+let prova = document.getElementById('prova')
+console.log(prova)
+
+prova.innerHTML += 'ao'
+console.log(wrapper,'ciao')
+
+carouselIndex = 0
+console.log(wrapper,'ciao')
+images.forEach(element => {
+    // const newImg = document.createElement('img')
+    // newImg.classList.add('w-100','fix')
+    // newImg.setAttribute('src', element.url)
+    // wrapper.append(newImg)
+    wrapper.innerHTML += `
+    <img src="${element.url}"`
+
+
+});
