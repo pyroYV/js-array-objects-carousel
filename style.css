@@ -1,11 +1,10 @@
 #carousel-wrapper > *{
     display: none;
-    
-
 }
 
 #carousel-wrapper .active{
     display: block;
+    
 }
 
 .position-fix{
@@ -18,4 +17,12 @@
 
 #carousel-wrapper{
     position: relative;
+}
+
+.row{
+    margin: 0 auto
+}
+
+#carousel-wrapper img{
+    height: 500px;
 }
